@@ -1,0 +1,2775 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>UNIT BRUNO</title>
+
+<style>
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    overflow-x: hidden;
+
+    background: #111;
+
+    color: white;
+}
+
+
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: -15px;
+
+    background-image:
+        url("foto1.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    filter: blur(3px);
+
+    transform: scale(1.08);
+
+    z-index: -2;
+
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,0.35);
+
+    z-index: -1;
+
+}
+
+
+/* ==================================================
+   SPLASH
+================================================== */
+
+#splash {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    background: #000;
+
+    z-index: 500;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
+}
+
+.splash-image {
+
+    width: 220px;
+
+    height: 220px;
+
+    object-fit: contain;
+
+    opacity: 0;
+
+    transform: scale(0.7);
+
+    animation:
+        splashImage 1.5s ease forwards;
+
+}
+
+@keyframes splashImage {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0.7);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+.splash-text {
+
+    margin-top: 25px;
+
+    color: white;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    animation:
+        splashText 1s ease
+        0.8s forwards;
+
+}
+
+@keyframes splashText {
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   INTRO
+================================================== */
+
+#intro {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,0.5);
+
+    z-index: 400;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
+}
+
+#intro.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.intro-box {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,0.5);
+
+}
+
+
+/* ==================================================
+   TYPEWRITER
+================================================== */
+
+#typewriter {
+
+    color: white;
+
+    font-size: 25px;
+
+    line-height: 1.6;
+
+    min-height: 120px;
+
+    text-shadow:
+        0 2px 10px
+        rgba(0,0,0,0.7);
+
+}
+
+#typewriter::after {
+
+    content: "|";
+
+    animation:
+        blink 0.7s infinite;
+
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0;
+    }
+
+}
+
+
+/* ==================================================
+   TOMBOL MASUK
+================================================== */
+
+#enterButton {
+
+    margin-top: 25px;
+
+    padding: 13px 35px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition: 0.4s;
+
+}
+
+#enterButton.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+#enterButton:hover {
+
+    transform: scale(1.05);
+
+}
+
+/* ==================================================
+   TOMBOL TIDAK
+================================================== */
+
+#noButton {
+
+    padding: 13px 30px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #ffdddd;
+
+    color: #b22222;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        background 0.3s ease;
+
+}
+
+.button-area {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+#enterButton {
+    margin-top: 0;
+}
+
+#noButton {
+    margin-top: 0;
+}
+
+#noButton.running {
+    position: fixed;
+    z-index: 9999;
+}
+
+
+/* Muncul bersama tombol Masuk */
+
+#noButton.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+
+/* Saat tombol kabur */
+
+#noButton.running {
+
+    position: fixed;
+
+    z-index: 999;
+
+}
+
+
+
+
+/* ==================================================
+   GAME SECTION
+================================================== */
+
+#gameSection {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px 10px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        visibility 1s ease;
+
+}
+
+#gameSection.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+
+/* ==================================================
+   GAME CONTAINER
+================================================== */
+
+.game-container {
+
+    width: min(95vw, 650px);
+
+    text-align: center;
+
+}
+
+.game-container h1 {
+
+    margin-bottom: 8px;
+
+    font-size: 30px;
+
+}
+
+.info {
+
+    margin-bottom: 15px;
+
+    color: #ddd;
+
+}
+
+
+/* ==================================================
+   MAZE
+================================================== */
+
+#maze {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    max-width: 620px;
+
+    margin: auto;
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,0.6);
+
+}
+
+
+/* ==================================================
+   WALL
+================================================== */
+
+.wall {
+
+    position: absolute;
+
+    background: #111;
+
+    z-index: 5;
+
+}
+
+
+/* ==================================================
+   FINISH
+================================================== */
+
+.finish {
+
+    position: absolute;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #55d66b;
+
+    border-radius: 5px;
+
+    z-index: 2;
+
+    font-size: 18px;
+
+}
+
+
+/* ==================================================
+   PLAYER
+================================================== */
+
+#player {
+    position: absolute;
+    z-index: 10;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+
+    width: 3.2%;
+    height: 3.2%;
+
+    transition:
+        left 0.08s linear,
+        top 0.08s linear;
+}
+
+
+/* ==================================================
+   RESTART
+================================================== */
+
+#restart {
+
+    margin-top: 15px;
+
+    padding: 11px 25px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+/* ==================================================
+   CONTROLLER
+================================================== */
+
+.controls {
+
+    margin: 15px auto 0;
+
+    width: 180px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 60px);
+
+    grid-template-rows:
+        repeat(2, 60px);
+
+    gap: 5px;
+
+}
+
+.controls button {
+
+    width: 60px;
+
+    height: 60px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.9);
+
+    font-size: 24px;
+
+    color: #222;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,0.3);
+
+}
+
+.controls button:active {
+
+    transform: scale(0.9);
+
+}
+
+.up {
+
+    grid-column: 2;
+
+}
+
+.left {
+
+    grid-column: 1;
+
+    grid-row: 2;
+
+}
+
+.down {
+
+    grid-column: 2;
+
+    grid-row: 2;
+
+}
+
+.right {
+
+    grid-column: 3;
+
+    grid-row: 2;
+
+}
+
+
+/* ==================================================
+   WIN POPUP
+================================================== */
+
+.win {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        rgba(0,0,0,0.8);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.4s;
+
+    z-index: 600;
+
+}
+
+.win.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.win-box {
+
+    padding: 35px;
+
+    background: white;
+
+    color: #222;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    width: 85%;
+
+    max-width: 400px;
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,0.5);
+
+}
+
+.win-box h2 {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+}
+
+.win-box button {
+
+    margin-top: 20px;
+
+    padding: 13px 25px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #222;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+/* ==================================================
+   FOTO SECTION
+================================================== */
+
+#photoSection {
+
+    min-height: 100vh;
+
+    padding: 40px 15px 70px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(40px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        visibility 1s ease;
+
+}
+
+#photoSection.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+.photo-title-main {
+
+    text-align: center;
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        0 3px 15px
+        rgba(0,0,0,0.7);
+
+}
+
+
+/* ==================================================
+   FOTO CARD
+================================================== */
+
+.photo-card {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: 0 auto 30px;
+
+    padding: 18px;
+
+    background:
+        rgba(255,255,255,0.9);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,0.4);
+
+}
+
+.photo-card img {
+
+    display: block;
+
+    width: 100%;
+
+    border-radius: 14px;
+
+}
+
+.photo-caption {
+
+    text-align: center;
+
+    color: #222;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-top: 14px;
+
+}
+
+
+/* ==================================================
+   GALLERY
+================================================== */
+
+#galleryButton {
+
+    display: block;
+
+    margin: 40px auto 20px;
+
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.3);
+
+}
+
+.gallery {
+
+    max-width: 850px;
+
+    margin: 20px auto;
+
+    opacity: 0;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        max-height 1s ease;
+
+}
+
+.gallery.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    max-height: 1000px;
+
+}
+
+
+/* ==================================================
+   SLIDER
+================================================== */
+
+.slider {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 10;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    background: #111;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,0.5);
+
+}
+
+.slide {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    transform: scale(1.05);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+
+    pointer-events: none;
+
+}
+
+.slide.active {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    pointer-events: auto;
+
+}
+
+.slide img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+/* ==================================================
+   SLIDER CONTROL
+================================================== */
+
+.slider-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-top: 20px;
+
+}
+
+.slider-controls button {
+
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+}
+
+#slideNumber {
+
+    font-weight: bold;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 600px) {
+
+    .splash-image {
+
+        width: 170px;
+
+        height: 170px;
+
+    }
+
+    .splash-text {
+
+        font-size: 20px;
+
+        padding: 0 20px;
+
+    }
+
+    #typewriter {
+
+        font-size: 20px;
+
+    }
+
+    .game-container h1 {
+
+        font-size: 24px;
+
+    }
+
+    .info {
+
+        font-size: 13px;
+
+    }
+
+    #maze {
+
+        width: 94vw;
+
+    }
+
+    .photo-card {
+
+        padding: 12px;
+
+    }
+
+    .photo-title-main {
+
+        font-size: 24px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+<audio id="bgMusic" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ==================================================
+     SPLASH
+================================================== -->
+
+<div id="splash">
+
+    <img
+        src="foto2.png"
+        class="splash-image"
+        alt="Pembuka">
+
+    <div class="splash-text">
+
+        GA ADA APA APA.
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     INTRO
+================================================== -->
+
+<div id="intro">
+
+    <div class="intro-box">
+
+        <div id="typewriter"></div>
+
+        <div class="button-area">
+    <button id="enterButton">
+        KaNgEnN bNGet🥺
+    </button>
+
+    <button id="noButton">
+        Tidak 😭
+    </button>
+</div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     GAME
+================================================== -->
+
+<section id="gameSection">
+
+    <div class="game-container">
+
+        <h1>
+            🧩 Selesaikan Labirin ini yaach
+        </h1>
+
+        <div class="info">
+
+            Temukan jalan menuju 🏁 untuk membuka KenangAN BRunOOo🥺🥺🥺
+
+        </div>
+
+
+        <div id="maze">
+
+    <div
+        id="finish"
+        class="finish">
+        🏁
+    </div>
+
+    <img
+        id="player"
+        src="Desain tanpa judul (2).png"
+        alt="Karakter">
+
+</div>
+
+
+        <button id="restart">
+
+            🔄 Mulai Ulang
+
+        </button>
+
+
+        <div class="controls">
+
+            <button
+                class="up"
+                data-dir="up">
+                ▲
+            </button>
+
+            <button
+                class="left"
+                data-dir="left">
+                ◀
+            </button>
+
+            <button
+                class="down"
+                data-dir="down">
+                ▼
+            </button>
+
+            <button
+                class="right"
+                data-dir="right">
+                ▶
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     WIN
+================================================== -->
+
+<div
+    id="win"
+    class="win">
+
+    <div class="win-box">
+
+        <h2>
+            🎉 Berhasil!
+        </h2>
+
+        <p>
+            SSaAttnYaA LihATt kenaNGAnn BRUNOOO!!
+        </p>
+
+        <button id="showPhotos">
+
+            MAuU YiIhaTT
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     FOTO
+================================================== -->
+
+<section id="photoSection">
+
+    <h2 class="photo-title-main">
+
+        ❤️ Kenangan Kita ❤️
+
+    </h2>
+
+
+    <!-- FOTO 1 -->
+
+            <div class="photo-card">
+
+                <img src="IMG_0757.JPG" alt="Foto 1">
+
+                <div class="photo-caption">
+
+                    KeStari & MeNtOoRRr lWucYuuU
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOTO 2 -->
+
+            <div class="photo-card">
+
+                <img src="IMG_0713.JPG" alt="Foto 2">
+
+                <div class="photo-caption">
+
+                    rawr
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOTO 3 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0026.jpg" alt="Foto 3">
+
+                <div class="photo-caption">
+
+                    SELAMAT
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOTO 4 -->
+
+            <div class="photo-card">
+
+                <img src="f3.JPG" alt="Foto 4">
+
+                <div class="photo-caption">
+
+                   joss 🤟🏻🤟🏻🤟🏻🤟🏻 jiss
+                </div>
+
+            </div>
+
+            <!-- FOTO 5 -->
+
+            <div class="photo-card">
+
+                <img src="f4.JPG" alt="Foto 3">
+
+                <div class="photo-caption">
+
+                    KonSER datee ni si andreWW
+
+                </div>
+
+            </div>
+
+
+            <!-- FOTO 6 -->
+
+            <div class="photo-card">
+
+                <img src="f6.JPG" alt="Foto 3">
+
+                <div class="photo-caption">
+
+                    wWLeEEe
+                </div>
+
+            </div>
+
+
+            <!-- FOTO 7 -->
+
+            <div class="photo-card">
+
+                <img src="f7.JPG" alt="Foto 3">
+
+                <div class="photo-caption">
+
+                    PASUKAN 
+
+                </div>
+
+            </div>
+
+            <!-- FOTO sisip -->
+
+            <div class="photo-card">
+
+                <img src="WhatsApp Image 2026-08-24 at 20.10.56.jpeg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    ngantuk kok tidur ngantuk ya VIVATT!!
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOTO 7 -->
+
+            <div class="photo-card">
+
+                <img src="f8.JPG" alt="Foto 3">
+
+                <div class="photo-caption">
+
+                    awWW
+
+                </div>
+
+            </div>
+
+
+            <!-- FOTO 8 -->
+
+            <div class="photo-card">
+
+                <img src="1.jpeg" alt="1">
+
+                <div class="photo-caption">
+
+                    GANTENG YAH MAS NANDA
+
+                </div>
+
+            </div>
+
+
+            <!-- FOTO 9 -->
+
+            <div class="photo-card">
+
+                <img src="WhatsApp Image 2026-08-24 at 20.02.19.jpeg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    kak LINtangg eehh
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 10 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0035.jpg" alt="35">
+
+                <div class="photo-caption">
+
+                    UNITTS Luwcyuu BRunOOo🥺🥺🥺gemass
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 11 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0080.jpg" alt="Wha5">
+
+                <div class="photo-caption">
+
+                    ISI teks sendiri yach
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 12 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0185.jpg" alt="Whs5">
+
+                <div class="photo-caption">
+
+                    KEMBARAN BRUNO & BRUNI NICHH
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 13 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0231.jpg" alt="Wats5">
+
+                <div class="photo-caption">
+
+                    Gaya REGION ENCANTO NICH
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 14 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0273.jpg" alt="Whs5">
+
+                <div class="photo-caption">
+
+                    HALOO...
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 15 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0292.jpg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    Lebih BAIK nakal tapi ITS dri pADa BAIK TAPI UNAIR
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 16 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0312.jpg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    GAayAa Unit BrunoO
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 17 -->
+
+            <div class="photo-card">
+
+                <img src="7.jpeg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    DUUH imuts imuts
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 18 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0024.jpg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    soo sweet
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 19 -->
+
+            <div class="photo-card">
+
+                <img src="WhatsApp Image 2026-08-18 at 22.59.48.jpeg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    kemche nichhx
+
+                </div>
+
+            </div>
+
+            <!-- FOTO 20 -->
+
+            <div class="photo-card">
+
+                <img src="IMG-20260824-WA0073.jpg" alt="Whats5">
+
+                <div class="photo-caption">
+
+                    GEREX
+
+                </div>
+
+            </div>
+
+
+
+    <!-- ==================================================
+         GALERI
+    ================================================== -->
+
+    <button id="galleryButton">
+
+        Lihat Semua Foto 📸
+
+    </button>
+
+
+    <div
+        id="gallery"
+        class="gallery">
+
+        <div class="slider">
+
+
+            <div class="slide active">
+
+                        <img src="foto1.png" alt="Foto 1">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0404.jpg" alt="Foto 2">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG_0733.JPG" alt="">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG_0743.JPG" alt="Foto 4">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG_0829.JPG" alt="Foto 5">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG_0849.JPG" alt="Foto 6">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG_0900.JPG" alt="Foto 7">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0209.jpg" alt="Foto 8">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0297.jpg" alt="Foto 9">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0345.jpg" alt="Foto 10">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0410.jpg" alt="Foto 11">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="WhatsApp Image 2026-08-18 at 22.59.48.jpeg" alt="Foto 12">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="WhatsApp Image 2026-08-24 at 22.08.23.jpeg" alt="Foto 13">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="f1.JPG" alt="Foto 14">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="f2.JPG" alt="Foto 15">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0034.jpg" alt="Foto 16">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0215.jpg" alt="Foto 17">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0251.jpg" alt="Foto 18">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0288.jpg" alt="Foto 19">
+
+                    </div>
+
+
+                    <div class="slide">
+
+                        <img src="WhatsApp Image 2026-08-24 at 22.13.29.jpeg" alt="Foto 20">
+
+                    </div>
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0142.jpg" alt="Foto 21">
+
+                    </div>
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0096.jpg" alt="Foto 22">
+
+                    </div>
+
+                    <div class="slide">
+
+                        <img src="IMG-20260824-WA0063.jpg" alt="Foto 23">
+
+                    </div>
+
+                    <div class="slide">
+
+                        <img src="IMG_0711.JPG" alt="Foto 24">
+
+                    </div>
+IMG_0711
+                </div>
+
+
+        <div class="slider-controls">
+
+            <button id="prevButton">
+                ❮
+            </button>
+
+           
+
+            <button id="nextButton">
+                ❯
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+const bgMusic = document.getElementById("bgMusic");
+
+bgMusic.volume = 0.8;
+
+function startMusic() {
+    bgMusic.play().catch(error => {
+        console.log("Audio gagal:", error);
+    });
+
+    // Hapus listener setelah berhasil mencoba
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+document.addEventListener("keydown", startMusic);
+
+/* ==================================================
+   SPLASH → INTRO
+================================================== */
+
+const splash =
+    document.getElementById("splash");
+
+const intro =
+    document.getElementById("intro");
+
+const typewriter =
+    document.getElementById("typewriter");
+
+const enterButton =
+    document.getElementById("enterButton");
+
+    const noButton =
+    document.getElementById("noButton");
+
+const gameSection =
+    document.getElementById("gameSection");
+
+
+const introText =
+    "PRAANKKK!!! emm ga😫 Ka☺️nGen🥺 kAh✌🏻 SaMA😝 UnIT BrUnOOo Inich✌🏻🥺😓😇😋😫";
+
+
+let typeIndex = 0;
+
+
+function typeWriter() {
+
+    if (
+        typeIndex <
+        introText.length
+    ) {
+
+        typewriter.textContent +=
+            introText.charAt(typeIndex);
+
+        typeIndex++;
+
+        setTimeout(
+            typeWriter,
+            45
+        );
+
+    } else {
+
+        setTimeout(
+            () => {
+
+                enterButton.classList.add(
+                    "show"
+                );
+                noButton.classList.add("show");
+
+            },
+            500
+        );
+
+    }
+
+}
+
+
+setTimeout(
+    () => {
+
+        splash.style.opacity = "0";
+
+        splash.style.visibility =
+            "hidden";
+
+        setTimeout(
+            () => {
+
+                intro.classList.add(
+                    "show"
+                );
+
+                setTimeout(
+                    typeWriter,
+                    500
+                );
+
+            },
+            700
+        );
+
+    },
+    3500
+);
+
+noButton.addEventListener("click", function () {
+
+    this.classList.add("running");
+
+    const buttonWidth = this.offsetWidth;
+    const buttonHeight = this.offsetHeight;
+
+    const maxX = window.innerWidth - buttonWidth - 20;
+    const maxY = window.innerHeight - buttonHeight - 20;
+
+    const randomX =
+        Math.floor(Math.random() * maxX) + 10;
+
+    const randomY =
+        Math.floor(Math.random() * maxY) + 10;
+
+    this.style.left = randomX + "px";
+    this.style.top = randomY + "px";
+});
+
+/* ==================================================
+   MASUK KE GAME
+================================================== */
+
+enterButton.addEventListener(
+    "click",
+    () => {
+
+        intro.style.opacity = "0";
+        intro.style.visibility = "hidden";
+
+        // Pastikan game dibuat ulang saat masuk
+        resetGame();
+
+        setTimeout(
+            () => {
+
+                gameSection.classList.add(
+                    "show"
+                );
+
+                document.body.style.overflowY =
+                    "auto";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            },
+            500
+        );
+    }
+);
+
+
+
+/* ==================================================
+   GAME LABIRIN
+================================================== */
+
+const maze =
+    document.getElementById("maze");
+
+const player =
+    document.getElementById("player");
+
+const finish =
+    document.getElementById("finish");
+
+const restart =
+    document.getElementById("restart");
+
+const win =
+    document.getElementById("win");
+
+const showPhotos =
+    document.getElementById("showPhotos");
+
+
+const SIZE = 21;
+
+let map = [];
+
+let playerX = 0;
+
+let playerY = 0;
+
+const finishX = SIZE - 1;
+
+const finishY = SIZE - 1;
+
+
+
+/* ==================================================
+   GENERATE MAP
+================================================== */
+
+function generateMaze() {
+
+    map =
+        Array.from(
+            {
+                length: SIZE
+            },
+            () =>
+                Array(
+                    SIZE
+                ).fill(1)
+        );
+
+
+    function carve(x, y) {
+
+        map[y][x] = 0;
+
+
+        const directions = [
+
+            [0, -2],
+
+            [2, 0],
+
+            [0, 2],
+
+            [-2, 0]
+
+        ];
+
+
+        directions.sort(
+            () =>
+                Math.random() - 0.5
+        );
+
+
+        for (
+            const [dx, dy]
+            of directions
+        ) {
+
+            const nx =
+                x + dx;
+
+            const ny =
+                y + dy;
+
+
+            if (
+
+                nx > 0 &&
+                nx < SIZE - 1 &&
+                ny > 0 &&
+                ny < SIZE - 1 &&
+                map[ny][nx] === 1
+
+            ) {
+
+                map[
+                    y + dy / 2
+                ][
+                    x + dx / 2
+                ] = 0;
+
+
+                carve(
+                    nx,
+                    ny
+                );
+
+            }
+
+        }
+
+    }
+
+
+    carve(1, 1);
+
+
+    /* START */
+
+    map[0][0] = 0;
+
+    map[0][1] = 0;
+
+    map[1][1] = 0;
+
+
+    /* FINISH */
+
+    map[SIZE - 1][SIZE - 1] = 0;
+
+    map[SIZE - 1][SIZE - 2] = 0;
+
+    map[SIZE - 2][SIZE - 2] = 0;
+
+
+    /*
+       Tambahkan jalan bercabang
+       supaya tidak terlalu mudah
+    */
+
+    for (
+        let i = 0;
+        i < 35;
+        i++
+    ) {
+
+        const x =
+            Math.floor(
+                Math.random() *
+                (SIZE - 2)
+            ) + 1;
+
+        const y =
+            Math.floor(
+                Math.random() *
+                (SIZE - 2)
+            ) + 1;
+
+
+        if (
+            map[y][x] === 1
+        ) {
+
+            let openCount = 0;
+
+
+            if (
+                map[y - 1][x] === 0
+            )
+                openCount++;
+
+
+            if (
+                map[y + 1][x] === 0
+            )
+                openCount++;
+
+
+            if (
+                map[y][x - 1] === 0
+            )
+                openCount++;
+
+
+            if (
+                map[y][x + 1] === 0
+            )
+                openCount++;
+
+
+            if (
+                openCount >= 2
+            ) {
+
+                map[y][x] = 0;
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+/* ==================================================
+   DRAW WALL
+================================================== */
+
+function createWalls() {
+
+    document
+        .querySelectorAll(".wall")
+        .forEach(
+            wall =>
+                wall.remove()
+        );
+
+
+    const cell =
+        100 / SIZE;
+
+
+    for (
+        let y = 0;
+        y < SIZE;
+        y++
+    ) {
+
+        for (
+            let x = 0;
+            x < SIZE;
+            x++
+        ) {
+
+            if (
+                map[y][x] === 1
+            ) {
+
+                const wall =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                wall.className =
+                    "wall";
+
+
+                wall.style.left =
+                    (x * cell) + "%";
+
+
+                wall.style.top =
+                    (y * cell) + "%";
+
+
+                wall.style.width =
+                    cell + "%";
+
+
+                wall.style.height =
+                    cell + "%";
+
+
+                maze.appendChild(
+                    wall
+                );
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+/* ==================================================
+   FINISH
+================================================== */
+
+function updateFinish() {
+
+    const cell =
+        100 / SIZE;
+
+
+    finish.style.left =
+        (finishX * cell) + "%";
+
+
+    finish.style.top =
+        (finishY * cell) + "%";
+
+
+    finish.style.width =
+        cell + "%";
+
+
+    finish.style.height =
+        cell + "%";
+
+}
+
+
+
+/* ==================================================
+   PLAYER
+================================================== */
+
+function updatePlayer() {
+
+    const cell =
+        100 / SIZE;
+
+
+    player.style.width =
+        (cell * 0.90) + "%";
+
+
+    player.style.height =
+        (cell * 0.90) + "%";
+
+
+    player.style.left =
+        (
+            playerX * cell +
+            cell * 0.125
+        ) + "%";
+
+
+    player.style.top =
+        (
+            playerY * cell +
+            cell * 0.125
+        ) + "%";
+
+}
+
+
+
+/* ==================================================
+   MOVE
+================================================== */
+
+function movePlayer(dx, dy) {
+
+    const newX =
+        playerX + dx;
+
+    const newY =
+        playerY + dy;
+
+
+    if (
+
+        newX < 0 ||
+        newX >= SIZE ||
+        newY < 0 ||
+        newY >= SIZE
+
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        map[newY][newX] === 1
+    ) {
+
+        return;
+
+    }
+
+
+    playerX = newX;
+
+    playerY = newY;
+
+
+    updatePlayer();
+
+
+    if (
+
+        playerX === finishX &&
+        playerY === finishY
+
+    ) {
+
+        setTimeout(
+            () => {
+
+                win.classList.add(
+                    "show"
+                );
+
+            },
+            250
+        );
+
+    }
+
+}
+
+
+
+/* ==================================================
+   KEYBOARD
+================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        switch(event.key) {
+
+            case "ArrowUp":
+            case "w":
+            case "W":
+
+                event.preventDefault();
+
+                movePlayer(0, -1);
+
+                break;
+
+
+            case "ArrowDown":
+            case "s":
+            case "S":
+
+                event.preventDefault();
+
+                movePlayer(0, 1);
+
+                break;
+
+
+            case "ArrowLeft":
+            case "a":
+            case "A":
+
+                event.preventDefault();
+
+                movePlayer(-1, 0);
+
+                break;
+
+
+            case "ArrowRight":
+            case "d":
+            case "D":
+
+                event.preventDefault();
+
+                movePlayer(1, 0);
+
+                break;
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   CONTROLLER HP
+================================================== */
+
+document
+    .querySelectorAll(
+        ".controls button"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    switch(
+                        this.dataset.dir
+                    ) {
+
+                        case "up":
+
+                            movePlayer(
+                                0,
+                                -1
+                            );
+
+                            break;
+
+
+                        case "down":
+
+                            movePlayer(
+                                0,
+                                1
+                            );
+
+                            break;
+
+
+                        case "left":
+
+                            movePlayer(
+                                -1,
+                                0
+                            );
+
+                            break;
+
+
+                        case "right":
+
+                            movePlayer(
+                                1,
+                                0
+                            );
+
+                            break;
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+function resetGame() {
+
+    playerX = 0;
+
+    playerY = 0;
+
+    win.classList.remove(
+        "show"
+    );
+
+    generateMaze();
+
+    createWalls();
+
+    updateFinish();
+
+    updatePlayer();
+
+}
+
+
+restart.addEventListener(
+    "click",
+    resetGame
+);
+
+
+
+/* ==================================================
+   SELESAI LABIRIN
+   → BUKA FOTO
+================================================== */
+
+showPhotos.addEventListener(
+    "click",
+    () => {
+
+        win.classList.remove(
+            "show"
+        );
+
+
+        const photoSection =
+            document.getElementById(
+                "photoSection"
+            );
+
+
+        photoSection.classList.add(
+            "show"
+        );
+
+
+        setTimeout(
+            () => {
+
+                photoSection.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            },
+            200
+        );
+
+    }
+);
+
+
+
+/* ==================================================
+   GALERI
+================================================== */
+
+const galleryButton =
+    document.getElementById(
+        "galleryButton"
+    );
+
+const gallery =
+    document.getElementById(
+        "gallery"
+    );
+
+
+galleryButton.addEventListener(
+    "click",
+    () => {
+
+        gallery.classList.toggle(
+            "show"
+        );
+
+
+        if (
+            gallery.classList.contains(
+                "show"
+            )
+        ) {
+
+            galleryButton.textContent =
+                "Tutup Foto ✖️";
+
+        } else {
+
+            galleryButton.textContent =
+                "Lihat Semua Foto 📸";
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   SLIDER
+   TIDAK OTOMATIS
+================================================== */
+
+const slides =
+    document.querySelectorAll(
+        ".slide"
+    );
+
+const nextButton =
+    document.getElementById(
+        "nextButton"
+    );
+
+const prevButton =
+    document.getElementById(
+        "prevButton"
+    );
+
+const slideNumber =
+    document.getElementById(
+        "slideNumber"
+    );
+
+
+let currentSlide = 0;
+
+
+function showSlide(number) {
+
+    slides.forEach(
+        slide => {
+
+            slide.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    slides[number].classList.add(
+        "active"
+    );
+
+
+    slideNumber.textContent =
+        `${number + 1} / ${slides.length}`;
+
+}
+
+
+function nextSlide() {
+
+    currentSlide++;
+
+
+    if (
+        currentSlide >=
+        slides.length
+    ) {
+
+        currentSlide = 0;
+
+    }
+
+
+    showSlide(
+        currentSlide
+    );
+
+}
+
+
+function prevSlide() {
+
+    currentSlide--;
+
+
+    if (
+        currentSlide < 0
+    ) {
+
+        currentSlide =
+            slides.length - 1;
+
+    }
+
+
+    showSlide(
+        currentSlide
+    );
+
+}
+
+
+nextButton.addEventListener(
+    "click",
+    nextSlide
+);
+
+prevButton.addEventListener(
+    "click",
+    prevSlide
+);
+
+
+showSlide(0);
+
+
+
+/* ==================================================
+   MULAI GAME
+================================================== */
+
+generateMaze();
+
+createWalls();
+
+updateFinish();
+
+updatePlayer();
+
+</script>
+
+</body>
+
+</html>
